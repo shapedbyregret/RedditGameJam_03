@@ -4,17 +4,24 @@
 
 	public class GoodGuy extends Sprite
 	{
-		
-		private var id:int;
+		public var life:Number;
+		public var id:int;
 		private var xVel:Number;
 		private var yVel:Number;
 		private var moveVert:Boolean;
 		
+		public var shoot:Boolean;
+		public var shootArr:Array;
+		
 		public function GoodGuy() 
 		{
-			id = 0;
+			life = 1;
+			id = Main.g.players.size();
 			xVel = yVel = 3;
 			moveVert = true;
+			
+			shoot = false;
+			shootArr = new Array();
 			
 			draw();
 			x = 5;
@@ -26,10 +33,11 @@
 		
 		public function update():void
 		{
+			// Movement
 			if (moveVert) {
 				if (x < 150) {
 					if(y<245) {
-						y += yVel;
+						y += Main.g.vel;
 					}
 					else {
 						moveVert = false;
@@ -37,7 +45,7 @@
 				}
 				else {
 					if (y > 5) {
-						y -= yVel;
+						y -= Main.g.vel;
 					}
 					else {
 						moveVert = false;
@@ -47,7 +55,7 @@
 			else {
 				if (y > 125) {
 					if (x < 295) {
-						x += xVel;
+						x += Main.g.vel;
 					}
 					else {
 						moveVert = true;
@@ -55,13 +63,26 @@
 				}
 				else {
 					if (x > 5) {
-						x -= xVel;
+						x -= Main.g.vel;
 					}
 					else {
 						moveVert = true;
 					}
 				}
 			}
+		
+			// Shoot
+			if (shootArr.length > 0 && Main.g.timer.currentCount == shootArr[0]) {
+				var angRad:Number = Math.atan2(Main._stage.mouseY - y, Main._stage.mouseX - x);
+				new Bullet(x, y, -angRad + 1.57079633, 2, id);
+				shootArr.shift();
+			}
+		
+		}
+		
+		public function destroy():void
+		{
+			
 		}
 		
 		private function draw():void

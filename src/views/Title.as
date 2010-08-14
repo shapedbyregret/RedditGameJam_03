@@ -12,7 +12,7 @@
 		public function Title()
 		{
 			styles = new StyleSheet();
-			styles.parseCSS("h1{color:#e8ae8d;font-size:24px;}" +
+			styles.parseCSS("h1{color:#FF4500;font-size:24px;}" +
 							"h2{color:#222222;font-size:18px;}" +
 							"h3{color:#C320C3;font-size:18px;}" +
 							"h4{color:#222222;font-size:14px;}");
@@ -46,6 +46,7 @@
 			new GoodGuy();
 			
 			Main.g.paused = false;
+			Main.g.timer.start();
 			toggleVisibility();
 		}
 		
