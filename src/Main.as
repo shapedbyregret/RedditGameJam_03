@@ -1,8 +1,9 @@
 ﻿package 
 {
-	import de.polygonal.ds.DLLNode;
 	import flash.display.*;
 	import flash.events.*;
+	
+	import de.polygonal.ds.DLLNode;
 	
 	public class Main extends Sprite 
 	{
@@ -31,10 +32,16 @@
 			mainLayer.addChild(g.playerLayer);
 			mainLayer.addChild(g.bulletLayer);
 			mainLayer.addChild(g.hud);
+			mainLayer.addChild(g.titleScreen);
 			addChild(mainLayer);
+			
+			addEventListener(Event.ENTER_FRAME, update);
+			addEventListener(MouseEvent.CLICK, shoot);
+			addEventListener(Event.DEACTIVATE, deactivate);
+			addEventListener(Event.ACTIVATE, activate);
 		}
 		
-		private function update():void
+		private function update(e:Event = null):void
 		{
 			if (!g.paused)
 			{
@@ -53,6 +60,24 @@
 			}
 		}
 		
+		private function shoot(me:MouseEvent):void
+		{
+			
+		}
+		
+		private function deactivate(e:Event):void
+		{
+			if(!Main.g.titleScreen.visible) {
+				Main.g.paused = true;
+			}
+		}
+		
+		private function activate(e:Event):void
+		{
+			if(!Main.g.titleScreen.visible) {
+				Main.g.paused = false;
+			}
+		}
 	}
 	
 }

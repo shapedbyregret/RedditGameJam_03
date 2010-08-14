@@ -20,7 +20,7 @@ Aim with the mouse
 
 **Outside Assets**
 
-Tex Gyre Heros font found on [FontSquirrel](http://www.fontsquirrel.com/)
+Tex Gyre Heros font found on [FontSquirrel](http://www.fontsquirrel.com/fonts/TeX-Gyre-Heros)
 
 Polygonal Labs as3 data structure library [Link](http://code.google.com/p/polygonal/wiki/DataStructures)
 
