@@ -16,6 +16,9 @@
 		public var score:Number;
 		public var numPlayers:int;
 		public var vel:Number;
+		public var deltaVel:Number;
+		public var enemySpawnRate:Number;
+		public var enemyTimer:Timer;
 		
 		// Containers
 		public var colors:Array;
@@ -46,6 +49,9 @@
 			score = 0;
 			numPlayers = 0;
 			vel = 2;
+			deltaVel = 0.5;
+			enemySpawnRate = 100;
+			enemyTimer = new Timer(10);
 			
 			//colors = [0xFF0000, 0xFFA500, 0xFFFF00, 0x008000, 0x0000FF, 0x4B0082, 0xEE82EE, 0x66a8e9, 0x579fe7, 0x4897e5];
 			colors = [0xFF4500, 0xFF4500, 0xFF4500, 0xFF4500, 0xFF4500, 0xFF4500, 0xFF4500, 0xFF4500, 0xFF4500 , 0xFF4500];
@@ -63,6 +69,23 @@
 			titleScreen = new Title();
 		}
 		
+		private function buildHud():void
+		{
+			
+		}
+		
+		private function tfHelper(newX:Number, newY:Number):TextField
+		{
+			var tf:TextField = new TextField();
+			tf.selectable = false;
+			tf.styleSheet = styles;
+			tf.embedFonts = true;
+			tf.autoSize = TextFieldAutoSize.CENTER;
+			tf.x = newX;
+			tf.y = newY;
+			
+			return tf;
+		}
 	}
 
 }

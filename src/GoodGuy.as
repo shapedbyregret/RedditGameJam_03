@@ -40,6 +40,7 @@
 						y += Main.g.vel;
 					}
 					else {
+						y = 245;
 						moveVert = false;
 					}
 				}
@@ -48,6 +49,7 @@
 						y -= Main.g.vel;
 					}
 					else {
+						y = 5;
 						moveVert = false;
 					}
 				}
@@ -58,6 +60,7 @@
 						x += Main.g.vel;
 					}
 					else {
+						x = 295;
 						moveVert = true;
 					}
 				}
@@ -66,6 +69,7 @@
 						x -= Main.g.vel;
 					}
 					else {
+						x = 5;
 						moveVert = true;
 					}
 				}
@@ -74,7 +78,7 @@
 			// Shoot
 			if (shootArr.length > 0 && Main.g.timer.currentCount == shootArr[0]) {
 				var angRad:Number = Math.atan2(Main._stage.mouseY - y, Main._stage.mouseX - x);
-				new Bullet(x, y, -angRad + 1.57079633, 2, id);
+				new Bullet(x, y, -angRad + 1.57079633, 4, id);
 				shootArr.shift();
 			}
 		
@@ -82,7 +86,10 @@
 		
 		public function destroy():void
 		{
-			
+			Main.g.vel -= Main.g.deltaVel;
+			Main.g.playerLayer.removeChild(this);
+			Main.g.players.nodeOf(this).remove();
+			//for (var i:int = 0; i < 1; i++) { new Particle(x, y, 0xFFFF00); }
 		}
 		
 		private function draw():void

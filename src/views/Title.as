@@ -47,6 +47,7 @@
 			
 			Main.g.paused = false;
 			Main.g.timer.start();
+			Main.g.enemyTimer.start();
 			toggleVisibility();
 		}
 		

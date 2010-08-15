@@ -10,6 +10,8 @@
 		// Embed font
 		[Embed(source="fonts/texgyreheros-regular.otf", fontFamily="TexGyreHeros")]
 		private var TexGyreHeros:String;
+		[Embed(source = "images/lod2.png")]
+		public static var LOD:Class;
 		
 		public static var g:Variables;
 		public static var _stage:Stage;
@@ -49,12 +51,14 @@
 			if (!g.paused)
 			{
 				g.score += 1;
-				if (g.score % 180 == 0 && g.players.size()<10) {
+				if (g.score % 200 == 0 && g.players.size()<10) {
 					new GoodGuy();
+					g.vel += g.deltaVel;
 				}
 				updateEntities();
 				collisions();
 				removeEntities();
+				spawnEnemies();
 			}
 		}
 		
@@ -159,6 +163,19 @@
 					aNode.val.destroy();
 				}
 				aNode = aNode.next;
+			}
+		}
+		
+		private function spawnEnemies():void
+		{
+			if (g.enemyTimer.currentCount % g.enemySpawnRate == 0) {
+				var newX:Number = 20 + Math.random() * 260;
+				var newY:Number = 20 + Math.random() * 220;
+				var newAcc:Number = 1 + Math.random() * 3;
+				new Enemy(newX, newY, newAcc);
+			}
+			if (g.score % 200 == 0 && g.enemySpawnRate > 10) {
+				g.enemySpawnRate -= 5;
 			}
 		}
 		
